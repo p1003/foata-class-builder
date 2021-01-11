@@ -1,0 +1,1 @@
+"# foata-class-builder" 
