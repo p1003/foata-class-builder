@@ -6,10 +6,12 @@ public class Executor {
     }
 
     public void run (String inputFile, String outputFile) {
-        FileReader fileReader = new FileReader("src/text_files/"+inputFile+".txt");
+
         Translator translator = new Translator();
+
         // przeczytanie pliku wejściowego i zapisanie alfabetu
-        translator.translate(fileReader.readFile());
+        translator.translate(FileReader.readFile("src/text_files/"+inputFile+".txt"));
+
         //wyznaczenie relacji zależności i niezależności
         translator.calculateDependencies();
 
@@ -18,13 +20,15 @@ public class Executor {
         System.out.println(translator.DtoString());
         System.out.println(translator.ItoString());
 
+        //wyznaczenie klas Foaty na podstawie słowa
+        FoataCalculator.calculateFoata(translator);
+
         // stworzenie grafu skierowanego produkcji
         Graph graph = new Graph(translator);
-        FoataCalculator foataCalculator = new FoataCalculator();
-        //wyznaczenie klas Foaty na podstawie słowa
-        foataCalculator.calculateFoata(translator);
+
         //wyznaczenie klas Foaty na podstawie grafu
-        foataCalculator.calculateFoata(graph);
+        FoataCalculator.calculateFoata(graph);
+
         //zapisanie grafu do pliku .dot
         graph.writeGraphToDotFile("src/dot_files/"+outputFile+".dot");
     }

@@ -5,17 +5,11 @@ import java.util.List;
 import java.util.Scanner;
 
 public class FileReader {
-    private final String fileName;
-
-    public FileReader (String fileName) {
-        this.fileName = fileName;
-    }
-
-    public List<String> readFile () {
+    public static List<String> readFile (String fileName) {
         List<String> result = new ArrayList<>();
 
         try {
-            File file = new File(this.fileName);
+            File file = new File(fileName);
             Scanner scanner = new Scanner(file);
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();

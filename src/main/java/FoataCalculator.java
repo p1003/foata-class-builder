@@ -7,9 +7,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class FoataCalculator {
-    public FoataCalculator() {}
-
-    public void calculateFoata (Graph graph) {
+    public static void calculateFoata (Graph graph) {
         List<Vertex> vertexList = graph.getVertexes();
 
         List<List<Vertex>> FoataClasses = new ArrayList<>();
@@ -41,7 +39,7 @@ public class FoataCalculator {
         System.out.println(result);
     }
 
-    public void calculateFoata (Translator translator) {
+    public static void calculateFoata (Translator translator) {
         List<Letter> word = translator.getWord();
         int N = word.size();
         int[] FoataValues = new int[N];
